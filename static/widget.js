@@ -14,7 +14,7 @@
     title: 'Urbana Estetika',
     subtitle: 'Digitalni pomočnik klinike',
     placeholder: 'Vprašajte o posegih, cenah, rezervacijah...',
-    welcomeMessage: 'Pozdravljeni! Sem digitalni pomočnik Urbane Estetike. Z veseljem odgovorim na vaša vprašanja o naših storitvah, cenah in rezervacijah. Kaj vas zanima?',
+    welcomeMessage: 'Pozdravljeni! Sem pomočnik Urbane Estetike, estetsko-medicinskega centra dr. Nine Suvorov v Ljubljani.\n\nPomagam vam pri vprašanjih o posegih, cenah in rezervacijah. Za osebno oceno primernosti posega je vedno potreben posvet z dr. Suvorov.\n\nKaj vas zanima?',
     mobileBreakpoint: 768,
     autoOpenDelay: 3000,
     maxStoredMessages: 50
@@ -280,7 +280,7 @@
     const launcher = document.createElement('div');
     launcher.id = 'kv-launcher';
 
-    var cardStyle = ['display:block','background:#ffffff','color:#b99654','font-size:14px','font-family:-apple-system,BlinkMacSystemFont,sans-serif','font-weight:600','padding:10px 16px','border-radius:18px 18px 4px 18px','box-shadow:0 2px 12px rgba(0,0,0,0.13)','cursor:pointer','border:1px solid rgba(130,77,136,0.2)','max-width:240px','text-align:right','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:8px','line-height:1.4'].join(';');
+    var cardStyle = ['display:block','background:#ffffff','color:#b99654','font-size:14px','font-family:-apple-system,BlinkMacSystemFont,sans-serif','font-weight:600','padding:10px 16px','border-radius:18px 18px 4px 18px','box-shadow:0 2px 12px rgba(0,0,0,0.13)','cursor:pointer','border:1px solid rgba(185,150,84,0.3)','max-width:290px','text-align:right','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:8px','line-height:1.4'].join(';');
 
     var closeStyle = ['display:block','background:#fff','color:#b99654','border:1px solid rgba(130,77,136,0.2)','border-radius:50%','width:24px','height:24px','font-size:13px','cursor:pointer','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:6px','margin-left:auto','line-height:22px','text-align:center','padding:0'].join(';');
 
@@ -294,7 +294,7 @@
     xBtn.onclick = function(e) { e.stopPropagation(); e.preventDefault(); hideCards(); };
     greetingCards.appendChild(xBtn);
 
-    ['Pozdravljeni 👋', 'Kakšne nastanitve imate?', 'Zanima me teambuilding!'].forEach(function(text) {
+    ['Pozdravljeni 👋', 'Kakšne storitve ponujate?', 'Kako rezerviram termin?'].forEach(function(text) {
       var btn = document.createElement('button');
       btn.setAttribute('style', cardStyle);
       btn.textContent = text;
