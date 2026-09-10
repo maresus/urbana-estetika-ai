@@ -195,7 +195,7 @@
     #kv-scroll-down.kv-visible { display: flex; }
     #kv-scroll-down svg { width: 20px; height: 20px; fill: white !important; }
 
-    #mo-inquiry-btn-bar { padding: 10px 16px 6px; background: white; border-top: 1px solid rgba(130,77,136,0.15); flex-shrink: 0; }
+    #mo-inquiry-btn-bar { padding: 10px 16px 6px; background: white; border-top: 1px solid rgba(185,150,84,0.15); flex-shrink: 0; }
     #mo-inquiry-btn { width: 100%; background: ${CONFIG.accentColor}; color: #fff; border: none; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
     #mo-inquiry-btn:hover { background: ${CONFIG.brandColorHover}; }
 
@@ -282,7 +282,7 @@
 
     var cardStyle = ['display:block','background:#ffffff','color:#b99654','font-size:14px','font-family:-apple-system,BlinkMacSystemFont,sans-serif','font-weight:600','padding:10px 16px','border-radius:18px 18px 4px 18px','box-shadow:0 2px 12px rgba(0,0,0,0.13)','cursor:pointer','border:1px solid rgba(185,150,84,0.3)','max-width:290px','text-align:right','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:8px','line-height:1.4'].join(';');
 
-    var closeStyle = ['display:block','background:#fff','color:#b99654','border:1px solid rgba(130,77,136,0.2)','border-radius:50%','width:24px','height:24px','font-size:13px','cursor:pointer','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:6px','margin-left:auto','line-height:22px','text-align:center','padding:0'].join(';');
+    var closeStyle = ['display:block','background:#fff','color:#b99654','border:1px solid rgba(185,150,84,0.2)','border-radius:50%','width:24px','height:24px','font-size:13px','cursor:pointer','touch-action:manipulation','-webkit-tap-highlight-color:transparent','margin-bottom:6px','margin-left:auto','line-height:22px','text-align:center','padding:0'].join(';');
 
     const greetingCards = document.createElement('div');
     greetingCards.id = 'kv-greeting-cards';
@@ -365,34 +365,38 @@
           <div class="kv-field">
             <label>Storitev</label>
             <select id="jf-storitev">
-              <option value="">-- Izberite povpraševanje --</option>
-              <optgroup label="Nastanitve">
-                <option>Soba z zajtrkom (85 EUR / noc)</option>
-                <option>Paket Pobeg v Posavje</option>
+              <option value="">-- Izberite vrsto povpraševanja --</option>
+              <optgroup label="Kirurški posegi">
+                <option>Blefaroplastika (korekcija vek)</option>
+                <option>Povečanje / dvig / zmanjšanje prsi</option>
+                <option>Facelift / dvig obraza</option>
+                <option>Lip lift / lipofiling obraza</option>
+                <option>Korekcija ušes / brazgotin</option>
+                <option>Liposukcija / abdominoplastika</option>
+                <option>Drug kirurški poseg</option>
               </optgroup>
-              <optgroup label="Hrana in degustacija">
-                <option>Degustacija vin s sommelierjem</option>
-                <option>Pogostitev / zasebna vecerja</option>
+              <optgroup label="Nekirurški posegi">
+                <option>Botulinum toksin (botoks)</option>
+                <option>Dermalna polnila (fillerji)</option>
+                <option>Biorevitalizacija / biostimulatorji</option>
+                <option>Mezoterapija / Aquagold</option>
               </optgroup>
-              <optgroup label="Teambuilding programi">
-                <option>Teambuilding - Trgatev</option>
-                <option>Teambuilding - Martinovanje</option>
-                <option>Teambuilding - Vinograd in vinska klet (1 dan)</option>
-                <option>Teambuilding - Vinograd in vinska klet (2 dni)</option>
+              <optgroup label="Naprave in tretmaji">
+                <option>Sofwave (lifting)</option>
+                <option>HydraFacial</option>
+                <option>Morpheus8 / SkinPen</option>
+                <option>MiraDry (potenje)</option>
+                <option>Lasersko odstranjevanje dlak</option>
+                <option>CoolTech / VelaShape / InMode</option>
               </optgroup>
-              <optgroup label="Pogostitve in praznovanja">
-                <option>Poroka / porocna pogostitev</option>
-                <option>Obletnica / rojstni dan</option>
-                <option>Krstina / zasebna proslava</option>
-              </optgroup>
-              <optgroup label="Aktivnosti">
-                <option>Kolesarjenje / najem e-kolesa</option>
-                <option>Ribolov (reka Sava)</option>
-                <option>Pohod / izlet v okolici</option>
+              <optgroup label="Dermatologija">
+                <option>Dermatološki pregled</option>
+                <option>Laserska depigmentacija</option>
+                <option>Kriokavstika / kemični pilingi</option>
               </optgroup>
               <optgroup label="Ostalo">
-                <option>Hisna prodajalna (vina, pridelki)</option>
-                <option>Splosno povprasevanje</option>
+                <option>Posvetovalni termin (splošno)</option>
+                <option>Splošno povpraševanje</option>
               </optgroup>
             </select>
           </div>
@@ -424,7 +428,7 @@
             <label>Sporočilo (neobvezno)</label>
             <textarea id="jf-sporocilo" placeholder="Posebne želje, število oseb..."></textarea>
           </div>
-          <button id="mo-inquiry-submit">Pošlji rezervacijo</button>
+          <button id="mo-inquiry-submit">Pošlji povpraševanje</button>
         </div>
         <div id="mo-inquiry-success">
           <div class="kv-success-icon">
@@ -683,7 +687,7 @@
       document.getElementById('mo-inquiry-success').classList.add('kv-visible');
     } catch (e) {
       alert('Napaka pri pošiljanju. Pokličite: 051 308 048');
-      btn.disabled = false; btn.textContent = 'Pošlji rezervacijo';
+      btn.disabled = false; btn.textContent = 'Pošlji povpraševanje';
     }
   }
 

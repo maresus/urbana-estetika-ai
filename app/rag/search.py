@@ -1,6 +1,5 @@
 """
-Simplified RAG search for Grobelnik AI.
-Uses BM25 for keyword matching.
+BM25 RAG search za Urbana Estetika AI.
 """
 from __future__ import annotations
 
