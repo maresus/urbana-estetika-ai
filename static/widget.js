@@ -246,12 +246,21 @@
     arrowDown: '<svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6 1.41-1.41z"/></svg>'
   };
 
-  let sessionId = localStorage.getItem('gb_widget_session') || generateSessionId();
-  localStorage.setItem('gb_widget_session', sessionId);
+  // Migracija starih gb_ ključev (Grobelnik template → Urbana Estetika)
+  if (!localStorage.getItem('ue_widget_session') && localStorage.getItem('gb_widget_session')) {
+    localStorage.setItem('ue_widget_session', localStorage.getItem('gb_widget_session'));
+    localStorage.removeItem('gb_widget_session');
+  }
+  if (!localStorage.getItem('ue_widget_messages') && localStorage.getItem('gb_widget_messages')) {
+    localStorage.setItem('ue_widget_messages', localStorage.getItem('gb_widget_messages'));
+    localStorage.removeItem('gb_widget_messages');
+  }
+  let sessionId = localStorage.getItem('ue_widget_session') || generateSessionId();
+  localStorage.setItem('ue_widget_session', sessionId);
 
   let storedMessages = [];
   try {
-    const stored = localStorage.getItem('gb_widget_messages');
+    const stored = localStorage.getItem('ue_widget_messages');
     if (stored) storedMessages = JSON.parse(stored);
   } catch (e) { storedMessages = []; }
 
@@ -260,14 +269,14 @@
   }
 
   function saveMessages() {
-    localStorage.setItem('gb_widget_messages', JSON.stringify(storedMessages.slice(-CONFIG.maxStoredMessages)));
+    localStorage.setItem('ue_widget_messages', JSON.stringify(storedMessages.slice(-CONFIG.maxStoredMessages)));
   }
 
   function clearConversation() {
     storedMessages = [];
-    localStorage.removeItem('gb_widget_messages');
+    localStorage.removeItem('ue_widget_messages');
     sessionId = generateSessionId();
-    localStorage.setItem('gb_widget_session', sessionId);
+    localStorage.setItem('ue_widget_session', sessionId);
     document.getElementById('kv-widget-messages').innerHTML = '';
     addMessage(CONFIG.welcomeMessage, 'bot', false);
   }
@@ -523,7 +532,7 @@
     if (bubbleBtn) bubbleBtn.setAttribute('aria-expanded', 'true');
     hideCards();
     document.getElementById('kv-widget-input').focus();
-    localStorage.setItem('gb_widget_open', 'true');
+    localStorage.setItem('ue_widget_open', 'true');
     var messages = document.getElementById('kv-widget-messages');
     if (messages.scrollHeight > messages.clientHeight) document.getElementById('kv-scroll-down').classList.add('kv-visible');
   }
@@ -540,7 +549,7 @@
     if (btn) { btn.innerHTML = icons.minimize; btn.title = 'Minimiziraj'; }
     var bubbleBtn = document.getElementById('kv-widget-bubble');
     if (bubbleBtn) bubbleBtn.setAttribute('aria-expanded', 'false');
-    localStorage.setItem('gb_widget_open', 'false');
+    localStorage.setItem('ue_widget_open', 'false');
     showCards();
   }
 
